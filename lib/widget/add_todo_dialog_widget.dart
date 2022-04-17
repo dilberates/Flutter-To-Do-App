@@ -25,8 +25,9 @@ class AddTodoDialogWidget extends StatefulWidget{
         ),
         const SizedBox(height: 8),
         TodoFormWidget(
-          
-
+          onChangedTitle: (title) => setState(() => this.title=title),
+          onChangedDescription: (description) => setState(() => this.description),
+          onSavedTodo: () {}
         ),
       ],
     ),

@@ -7,13 +7,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int selecetedIndex = 0;
+  int selecetedIndex = 0; //0 ilk seçeneğin seçili olacağını belirtir.
 
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      Container(),
-      Container(),
+      Container(), //to-do page sayfası için
+      Container(), //compledet page sayfası için
     ];
     return Scaffold(
       appBar: AppBar(
@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.white60.withOpacity(0.7),
         selectedItemColor: Colors.white,
         currentIndex: selecetedIndex,
-        onTap: (index) => setState(() {
-          selecetedIndex = index;
+        onTap: (index) => setState(() { //BottomNB da gezinmek için
+          selecetedIndex = index; //Indexi değiştirmek için.
         }),
         items: [
-          BottomNavigationBarItem(
+          BottomNavigationBarItem( //gezinme çubuğu
             icon: Icon(Icons.fact_check_outlined),
             label: 'Todos',
           ),
@@ -38,14 +38,15 @@ class _HomePageState extends State<HomePage> {
       ),
       body: tabs[selecetedIndex],
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
+        shape: RoundedRectangleBorder( //şeklini değiştiriyoruz
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: Colors.green,
-        onPressed: () => showDialog(
+        onPressed: () => showDialog( //ekel butonuna tıklayınca
             context: context,
             child:AddTodoDialogWidget()
-            barrierDismissible: false,
+            barrierDismissible: false, //butona basınca gelecek olan ekranın arka kısmının işlenmez olmasını sağlıyor.
+
         ),
         child: Icon(Icons.add),
       ),
