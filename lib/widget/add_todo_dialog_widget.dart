@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/widget/todo_form_widget.dart';
 
 class AddTodoDialogWidget extends StatefulWidget{
   @override
-  _AddTodoDialogWidgetState createState() => _AddTodoDialogWidget();
+  _AddTodoDialogWidgetState createState() => _AddTodoDialogWidgetState();
   }
 
   class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget>{
@@ -24,10 +25,10 @@ class AddTodoDialogWidget extends StatefulWidget{
           ),
         ),
         const SizedBox(height: 8),
-        TodoFormWidget(
+        TodoFromWidget(
           onChangedTitle: (title) => setState(() => this.title=title),
           onChangedDescription: (description) => setState(() => this.description),
-          onSavedTodo: () {}
+          onSavedTodo: () {}, key: null,
         ),
       ],
     ),

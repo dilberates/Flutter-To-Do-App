@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/main.dart';
 
+import '../widget/add_todo_dialog_widget.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -12,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      Container(), //to-do page sayfası için
+      TodoListWidget(), //to-do page sayfası için
       Container(), //compledet page sayfası için
     ];
     return Scaffold(
@@ -33,7 +35,9 @@ class _HomePageState extends State<HomePage> {
             label: 'Todos',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.done, size: 28), label: 'Completed'),
+              icon: Icon(Icons.done, size: 28),
+              label: 'Completed'
+          ),
         ],
       ),
       body: tabs[selecetedIndex],
@@ -44,9 +48,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.green,
         onPressed: () => showDialog( //ekel butonuna tıklayınca
             context: context,
-            child:AddTodoDialogWidget()
-            barrierDismissible: false, //butona basınca gelecek olan ekranın arka kısmının işlenmez olmasını sağlıyor.
-
+            child:AddTodoDialogWidget(),
+            barrierDismissible: false,
         ),
         child: Icon(Icons.add),
       ),
