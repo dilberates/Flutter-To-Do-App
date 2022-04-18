@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do/main.dart';
 
 import '../widget/add_todo_dialog_widget.dart';
+import '../widget/completed_list_widget.dart';
 import '../widget/todo_list_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,8 +51,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () => showDialog( //ekel butonuna tıklayınca
             context: context,
             //child:AddTodoDialogWidget(),
-            barrierDismissible: false,
-            builder: (BuildContext context) {  },
+            barrierDismissible: false, builder: (BuildContext context) {  },
         ),
         child: Icon(Icons.add),
       ),
