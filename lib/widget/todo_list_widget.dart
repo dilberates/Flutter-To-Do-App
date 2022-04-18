@@ -27,7 +27,7 @@ class TodoListWidget extends StatelessWidget{
     itemCount: todos.length,
       itemBuilder: (context ,index){
       final todo=todos[index];
-      return TodoWidget(todo:todo);
+      return TodoWidget(todo:todo, key: null,);
       },
     );
   }

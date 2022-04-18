@@ -55,6 +55,5 @@ class AddTodoDialogWidget extends StatefulWidget{
       provider.addTodo(todo);
       Navigator.of(context).pop();
     }
-
   }
 }

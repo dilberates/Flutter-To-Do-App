@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final tabs = [
       TodoListWidget(), //to-do page sayfası için
-      Container(), //compledet page sayfası için
+      CompletedListWidget(), //compledet page sayfası için
     ];
     return Scaffold(
       appBar: AppBar(

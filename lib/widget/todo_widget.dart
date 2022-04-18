@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do/model/todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do/provider/todos.dart';
+import 'package:to_do/widget/utils.dart';
 class TodoWidget extends StatelessWidget{
-  final Todo? todo;
+  final Todo todo;
 
   const TodoWidget({
-    this.todo,
-    Key? key,
+    required this.todo,
+    required Key? key,
 }) :super (key: key);
   @override
 
@@ -15,7 +18,7 @@ class TodoWidget extends StatelessWidget{
     borderRadius: BorderRadius.circular(16),
     child:Slidable(
     actionPane: SlidableDrawerActionPane(),
-    key: Key(todo.id),
+    key: Key((todo.id).toString()),
     actions: [
       IconSlideAction(
         color: Colors.lightGreenAccent,
@@ -27,7 +30,7 @@ class TodoWidget extends StatelessWidget{
     secondaryActions: [
       IconSlideAction(
         color: Colors.red,
-        onTap: () {},
+        onTap: () => deleteTodo(context,todo),
         caption: 'Delete',
         icon: Icons.delete,
       )
@@ -42,8 +45,15 @@ class TodoWidget extends StatelessWidget{
     Checkbox(
       activeColor: Theme.of(context).primaryColor,
       checkColor: Colors.white,
-      value: todo.isDone,
-      onChanged: (_){},
+      value: todo!.isDone,
+      onChanged: (_){
+        final provider=Provider.of<TodosProvider>(context,listen: false);
+        final isDone=provider.toogleTodoStatus(todo);
+        Utils.showSnackBar(
+          context,
+          isDone ? 'Task Completed' : 'Task marked incomplete',
+        );
+      },
     ),
     const SizedBox(width: 20),
     Expanded(
@@ -52,18 +62,18 @@ class TodoWidget extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              todo.title,
+              todo!.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).primaryColor,
                 fontSize: 22,
               ),
             ),
-            if(todo.description.isNotEmpty)
+            if(todo!.description.isNotEmpty)
               Container(
                 margin: EdgeInsets.only(top: 4),
                 child: Text(
-                  todo.description,
+                  todo!.description,
                   style: TextStyle(fontSize: 20,height: 1.5),
                 ),
               )
@@ -75,6 +85,10 @@ class TodoWidget extends StatelessWidget{
   ),
   );
 
-
+  void deleteTodo(BuildContext context, Todo todo) {
+    final provider=Provider.of<TodosProvider>(context,listen: false);
+    provider.removeTodo(todo);
+    Utils.showSnackBar(context,'Deleted Task');
+  }
 
 }
