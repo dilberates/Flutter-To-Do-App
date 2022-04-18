@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:to_do/model/todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 class TodoWidget extends StatelessWidget{
-  final Todo todo;
+  final Todo? todo;
 
   const TodoWidget({
-    required this.todo,
+    this.todo,
     Key? key,
 }) :super (key: key);
   @override

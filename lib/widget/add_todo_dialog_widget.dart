@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/provider/todos.dart';
 import 'package:to_do/widget/todo_form_widget.dart';
-
+import 'package:provider/provider.dart';
 import '../model/todo.dart';
 
 class AddTodoDialogWidget extends StatefulWidget{
@@ -41,6 +42,7 @@ class AddTodoDialogWidget extends StatefulWidget{
   void addTodo(){
     final isValid=_formKey.currentState?.validate();
     if(!isValid!){
+
       return;
     }else{
       final todo=Todo(
@@ -49,6 +51,9 @@ class AddTodoDialogWidget extends StatefulWidget{
         description: description,
         createdTime: DateTime.now(),
       );
+      final provider=Provider.of<TodosProvider>(context,listen:false);
+      provider.addTodo(todo);
+      Navigator.of(context).pop();
     }
 
   }
