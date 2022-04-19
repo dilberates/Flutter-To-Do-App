@@ -29,6 +29,16 @@ class EditTodoPage extends StatefulWidget{
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       title: Text('Edit Todo'),
+      actions: [
+        IconButton(
+          icon:Icon(Icons.delete),
+          onPressed: (){
+            final provider=Provider.of<TodosProvider>(context,listen: false);
+            provider.removeTodo(widget.todo);
+            Navigator.of(context).pop();
+        },
+        )
+      ],
     ) ,
   body: Padding(
     padding: EdgeInsets.all(16),

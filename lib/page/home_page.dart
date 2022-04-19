@@ -48,10 +48,10 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: Colors.green,
-        onPressed: () => showDialog( //ekel butonuna tıklayınca
-            context: context,
-            //child:AddTodoDialogWidget(),
-            barrierDismissible: false, builder: (BuildContext context) {  },
+        onPressed: () => showDialog(//ekel butonuna tıklayınca
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => AddTodoDialogWidget()
         ),
         child: Icon(Icons.add),
       ),

@@ -7,8 +7,9 @@ import 'package:to_do/provider/todos.dart';
 import 'package:to_do/widget/utils.dart';
 
 import '../page/edit_todo_page.dart';
+
 class TodoWidget extends StatelessWidget{
-  final Todo todo;
+  final Todo? todo;
 
   const TodoWidget({
     required this.todo,
@@ -20,11 +21,11 @@ class TodoWidget extends StatelessWidget{
     borderRadius: BorderRadius.circular(16),
     child:Slidable(
     actionPane: SlidableDrawerActionPane(),
-    key: Key((todo.id).toString()),
+    key: Key((todo!.id).toString()),
     actions: [
       IconSlideAction(
         color: Colors.lightGreenAccent,
-        onTap: () => editTodo(context,todo),
+        onTap: () => editTodo(context,todo!),
         caption: 'Edit',
         icon: Icons.edit,
       )
@@ -32,7 +33,7 @@ class TodoWidget extends StatelessWidget{
     secondaryActions: [
       IconSlideAction(
         color: Colors.red,
-        onTap: () => deleteTodo(context,todo),
+        onTap: () => deleteTodo(context,todo!),
         caption: 'Delete',
         icon: Icons.delete,
       )
@@ -40,7 +41,10 @@ class TodoWidget extends StatelessWidget{
     child:buildTodo(context),
   ),
   );
-  Widget buildTodo(BuildContext context) => Container(
+  Widget buildTodo(BuildContext context) =>GestureDetector(
+    onTap:() => editTodo(context,todo!),
+
+    child:Container(
     padding:EdgeInsets.all(20),
     child: Row(
   children: [
@@ -50,7 +54,7 @@ class TodoWidget extends StatelessWidget{
       value: todo!.isDone,
       onChanged: (_){
         final provider=Provider.of<TodosProvider>(context,listen: false);
-        final isDone=provider.toogleTodoStatus(todo);
+        final isDone=provider.toogleTodoStatus(todo!);
         Utils.showSnackBar(
           context,
           isDone ? 'Task Completed' : 'Task marked incomplete',
@@ -78,12 +82,13 @@ class TodoWidget extends StatelessWidget{
                   todo!.description,
                   style: TextStyle(fontSize: 20,height: 1.5),
                 ),
-              )
+              ),
           ],
         ),
     ),
   ],
 
+  ),
   ),
   );
 
