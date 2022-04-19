@@ -24,7 +24,7 @@ class TodoWidget extends StatelessWidget{
     key: Key((todo!.id).toString()),
     actions: [
       IconSlideAction(
-        color: Colors.lightGreenAccent,
+        color: Colors.green,
         onTap: () => editTodo(context,todo!),
         caption: 'Edit',
         icon: Icons.edit,
@@ -50,7 +50,7 @@ class TodoWidget extends StatelessWidget{
   children: [
     Checkbox(
       activeColor: Theme.of(context).primaryColor,
-      checkColor: Colors.white,
+      checkColor: Colors.black12,
       value: todo!.isDone,
       onChanged: (_){
         final provider=Provider.of<TodosProvider>(context,listen: false);
@@ -63,7 +63,6 @@ class TodoWidget extends StatelessWidget{
     ),
     const SizedBox(width: 20),
     Expanded(
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,7 +70,7 @@ class TodoWidget extends StatelessWidget{
               todo!.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
+                color: Colors.white60,
                 fontSize: 22,
               ),
             ),
