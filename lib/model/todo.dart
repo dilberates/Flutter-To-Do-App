@@ -6,8 +6,8 @@ class TodoField {
 
 class Todo {
   DateTime createdTime;
- String title;
-  String id;
+   String title;
+  String? id;
    String description;
   bool isDone;
 
@@ -15,7 +15,7 @@ class Todo {
     required this.createdTime,
     required this.title,
     this.description='',
-    required this.id,
+    this.id,
     this.isDone=false,
 });
 }

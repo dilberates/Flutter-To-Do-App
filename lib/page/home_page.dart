@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:to_do/main.dart';
 
 import '../widget/add_todo_dialog_widget.dart';
+import '../widget/completed_list_widget.dart';
+import '../widget/todo_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final tabs = [
       TodoListWidget(), //to-do page sayfası için
-      Container(), //compledet page sayfası için
+      CompletedListWidget(), //compledet page sayfası için
     ];
     return Scaffold(
       appBar: AppBar(
@@ -46,10 +48,10 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: Colors.green,
-        onPressed: () => showDialog( //ekel butonuna tıklayınca
-            context: context,
-            child:AddTodoDialogWidget(),
-            barrierDismissible: false,
+        onPressed: () => showDialog(//ekel butonuna tıklayınca
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => AddTodoDialogWidget()
         ),
         child: Icon(Icons.add),
       ),
