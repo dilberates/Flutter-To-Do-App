@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:to_do/page/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do/provider/todos.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   static final String title = 'TODO APP';
