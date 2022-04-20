@@ -21,7 +21,6 @@ class TodoListWidget extends StatelessWidget{
     ):
 
       ListView.separated(
-
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.all(16),
     separatorBuilder: (context,index) => Container(height: 10), //Todolar arası mesafe
